@@ -1,5 +1,6 @@
 <?php
-
+    
+    session_start();
   
     include_once("config/fonctions.php");
 
@@ -22,6 +23,9 @@
         include("template/inscription.php");
         break;
 
+        case 'nouveau':
+        include("template/nouveau.php");
+        break;
         
     
     }

@@ -31,36 +31,37 @@ if(!empty($_POST))
     {
       $valid = false;
       $erreurpseudo = 'Ce pseudo est pris';
-      header('Location: ../header.php');
+      header('Location: ../index.php?page=header');
     }
     
     if(!check_email($email))
     {
       $valid = false;
       $erreuremail = 'Cet email correspond a un membre';
-      header('Location: ../header.php');
+      header('Location: ../index.php?page=header');
     }
     
     else
     {
-      $to = $email;
-      $subject = 'Inscription';
-      $message = '<h4>Bonjour '.ucwords($pseudo).'</h4>
-      <p>Vous �tes maintenant membre du forum</p>
-      <p>Voici vos identifiants :<br />
-      Login : <b>'.$pseudo.'</b><br />
-      Mot de passe : <b>'.$pass.'</b></p>
-      <p>A bient�t sur le forum</p>';
+      // $to = $email;
+      // $subject = 'Inscription';
+      // $message = '<h4>Bonjour '.ucwords($pseudo).'</h4>
+      // <p>Vous �tes maintenant membre du forum</p>
+      // <p>Voici vos identifiants :<br />
+      // Login : <b>'.$pseudo.'</b><br />
+      // Mot de passe : <b>'.$pass.'</b></p>
+      // <p>A bient�t sur le forum</p>';
       
-      $headers = 'From:noreply@forum.com'."\r\n";
-      $headers.='MIME-version: 1.0'."\r\n";
-      $headers.='Content-type: text/html; charset=utf-8'."\r\n";
-      mail($to,$subject,$message,$headers);
+      // $headers = 'From:noreply@forum.com'."\r\n";
+      // $headers.='MIME-version: 1.0'."\r\n";
+      // $headers.='Content-type: text/html; charset=utf-8'."\r\n";
+      // mail($to,$subject,$message,$headers);
       
       add_membre($pseudo,$email,$pass);
+      header('Location: ../index.php?page=login');
       
-      $success = 'Inscritpion reussie';
-      unset($pseudo); unset($email); unset($pass);
+      // $success = 'Inscritpion reussie';
+      // unset($pseudo); unset($email); unset($pass);
     }
   }
 }

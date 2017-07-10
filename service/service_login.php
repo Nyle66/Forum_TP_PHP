@@ -18,20 +18,21 @@ if(!empty($_POST))
   
   $erreurpseudo = (empty($pseudo)) ? 'Indiquez votre pseudo' : '';
   $erreurpass = (empty($pass)) ? 'Indiquez votre mot de passe' : '';
-  
+
   if($valid == true)
   {
+
     if(!check_id($pseudo,$pass))
     {
       $erreurid = 'Mauvais identifiants';
-      header('Location: ../index.php');
+      header('Location: ../index.php?page=header');
     }
     
     else
     {
       $_SESSION['membre'] = $pseudo;
-      
-      header('Location: header.php');
+     
+      header('Location: ../index.php?page=header');
     }
   }
 }
