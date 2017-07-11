@@ -1,5 +1,13 @@
 <?php
-    
+    /*
+     * Bien en général. Il faut paufiner les services et attribuer
+     * des fonctions aux controlleur qui doivent lui être attribuer
+     * comme le controle des sessions et destruction de session.
+     *
+     * Pour le SQL: il faut rajouter un userId dans la table post
+     * pour lui indiquer son propriétaire et faire une contrainte clé
+     * avec une FOREIGN KEY (userId) REFERENCES user(id)
+     * */
     session_start();
   
     include_once("config/fonctions.php");

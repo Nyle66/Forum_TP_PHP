@@ -30,6 +30,8 @@ if(!empty($_POST))
     if(!check_pseudo($pseudo))
     {
       $valid = false;
+      /*Alfonso: il faut encore rapporter ces erreurs à l'utilisateur
+       * */
       $erreurpseudo = 'Ce pseudo est pris';
       header('Location: ../index.php?page=header');
     }

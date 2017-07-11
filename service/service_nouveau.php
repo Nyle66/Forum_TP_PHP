@@ -20,6 +20,8 @@ if(!empty($_POST))
   $valid = (empty($titre) || empty($message)) ? false : true;
   $erreurtitre = (empty($titre)) ? 'Indiquez un titre' : '';
   $erreurmessage = (empty($message)) ? 'Posez votre question' : '';
+  /*Alfonso: il faut encore rapporter ces erreurs au user
+   * */
   
   if($valid)
   {
