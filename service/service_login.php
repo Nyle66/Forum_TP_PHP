@@ -10,40 +10,52 @@ require('../config/fonctions.php');
  * est dans la session ou pas selon la page ou on est. Un service représente
  * une action user. Ce contrôle ne doit pas dépendre d'une action user
  * */
-if(check_session())
-{
-  header('Location: index.php');
-}
+// if(check_session())
+// {
+//   header('Location: index.php');
+// }
 
 $title = 'Connexion';
 
-if(!empty($_POST))
-{
-  extract($_POST);
-  
-  $valid = (empty($pseudo) || empty($pass)) ? false : true;
-  
-  $erreurpseudo = (empty($pseudo)) ? 'Indiquez votre pseudo' : '';
-  $erreurpass = (empty($pass)) ? 'Indiquez votre mot de passe' : '';
+$pseudo = trim($_POST['pseudo']);
+$pass = trim($_POST['pass']);
 
-  if($valid == true)
-  {
 
-    if(!check_id($pseudo,$pass))
-    {
-        /*Alfonso: comment est reportée cette erreur au user?
-         * */
-      $erreurid = 'Mauvais identifiants';
-      header('Location: ../index.php?page=header');
-    }
-    
-    else
-    {
-      $_SESSION['membre'] = $pseudo;
-     
-      header('Location: ../index.php?page=header');
-    }
+
+if($pseudo != "" && $pass != ""){
+  $req1 = check_pseudo($pseudo);
+  $req2 = check_password($pseudo);
+
+  $req2 = $req2[0]["pass"];
+
+  if(empty($req1)){
+
+    header("location: ../index.php?page=login");
+    die();
+
   }
+  else {
+
+    if($pass == $req2){
+      $_SESSION["pseudo"] = $pseudo;
+      header("location: ../index.php?page=header");
+      die();
+    }
+    else{
+      header("location: ../index.php?page=login");
+      die();
+    }
+
+  }
+
+
 }
+else{
+    header("location: ../index.php?page=login");
+    die();
+}
+
+
+
 
 ?>

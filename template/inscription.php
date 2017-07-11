@@ -1,3 +1,21 @@
+<?php
+  $erreurpseudo = "";
+  if(isset($_GET["pseudo"])){
+      if($_GET["pseudo"]== false){
+        $erreurpseudo = "Pseudo déja pris";
+      }
+  }
+   $erreuremail = "";
+  if(isset($_GET["email"])){
+      if($_GET["email"]== false){
+        $erreuremail = "Email déja pris";
+      }
+  }
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,15 +57,16 @@
   <form action="service/service_inscription.php" method="post">
     
     <label for="pseudo">Pseudo :</label>
-    <span class="error"><?php if(isset($erreurpseudo)) echo $erreurpseudo;?></span>
-    <input type="text" name="pseudo" value="<?php if(isset($pseudo)) echo $pseudo;?>" />
+    <p><?php echo $erreurpseudo  ?></p>
+    <input type="text" name="pseudo" />
+    <br><br>
     
     <label for="email">Email :</label>
-    <span class="error"><?php if(isset($erreuremail)) echo $erreuremail;?></span>
-    <input type="text" name="email" value="<?php if(isset($email)) echo $email;?>" />
+    <p><?php echo $erreuremail  ?></p>
+    <input type="text" name="email" />
+    <br><br>
     
     <label for="pass">Mot de passe :</label>
-    <span class="error"><?php if(isset($erreurpass)) echo $erreurpass;?></span>
     <input type="password" name="pass" value="<?php if(isset($pass)) echo $pass;?>" />
     
     <input type="submit" class="submit" value="Envoyer" />

@@ -1,5 +1,6 @@
 <!--<?php include('../config/fonctions.php');?>-->
 
+
 <!DOCTYPE html>
 <html lang="en">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -18,7 +19,7 @@
         <ul>
           
           
-          <?php if(!check_session()):?>
+          <?php if(!isset($_SESSION["pseudo"])):?>
           <li><a href="index.php?page=login">Connexion</a></li>
           <li><a href="index.php?page=inscription">Inscription</a></li>
           <?php else:?>
@@ -33,7 +34,7 @@
       <h1>BIENVENUE SUR LE FORUM </h1>
 
 
-        <?php if(!check_session()):?>
+        <?php if(check_session()):?>
         <p> Connectez-vous !</p>
         <?php else:?>
         <?php

@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,8 +34,8 @@
   
   <h1>Connexion</h1>
   
-  <?php if(isset($erreurid)):?>
-  <div class="error"><?php echo $erreurid;?></div>
+  <?php if(isset($_GET['login'])):?>
+  <div class="error"><?php $erreurid = 'Mauvais identifiants'; echo $erreurid;?></div>
   <?php endif;?>
   
   <form action="service/service_login.php" method="post">

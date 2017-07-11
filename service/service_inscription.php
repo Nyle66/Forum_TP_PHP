@@ -4,43 +4,59 @@ session_start();
 require('../config/connect.php');
 require('../config/fonctions.php');
 
-if(check_session())
-{
-  header('Location: index.php');
-}
+// if(check_session())
+// {
+//   header('Location: index.php');
+// }
 
 $title = 'Inscription';
 
-if(!empty($_POST))
-{
-  extract($_POST);
+// if(!empty($_POST))
+// {
+//   extract($_POST);
   
-  $valid = (empty($pseudo) || empty($email) || !filter_var($email,FILTER_VALIDATE_EMAIL) || empty($pass)) ? false : true;
+//  $valid = (empty($pseudo) || empty($email) || !filter_var($email,FILTER_VALIDATE_EMAIL) || empty($pass)) ? false : true;
   
-  $erreurpseudo = (empty($pseudo)) ? 'Chosissez un pseudo' : '';
-  $erreuremail = (empty($email) || !filter_var($email,FILTER_VALIDATE_EMAIL)) ? 'Indiquez un email valide' : '';
-  $erreurpass = (empty($pass)) ? 'Choisissez un mot de passe' : '';
+//   $erreurpseudo = (empty($pseudo)) ? 'Chosissez un pseudo' : '';
+//   $erreuremail = (empty($email) || !filter_var($email,FILTER_VALIDATE_EMAIL)) ? 'Indiquez un email valide' : '';
+//   $erreurpass = (empty($pass)) ? 'Choisissez un mot de passe' : '';
   
-  if($valid == true)
-  {
-    $pseudo = strip_tags($pseudo);
-    $email = strip_tags($email);
-    $pass = strip_tags($pass);
+    $pseudo = $_POST['pseudo'];
+    $email = $_POST['email'];
+    $pass = $_POST['pass'];
+
+    $req1 = check_pseudo($pseudo);
+    $req2 = check_email($email);
+    $req3 = check_pass($pass);
+
+  
+
+    $erreurpseudo = true;
+    $erreuremail = true;
+ 
     
-    if(!check_pseudo($pseudo))
+    if(isset($req1[0]))
     {
-      $valid = false;
+      // $valid = false;
       /*Alfonso: il faut encore rapporter ces erreurs à l'utilisateur
        * */
-      $erreurpseudo = 'Ce pseudo est pris';
-      header('Location: ../index.php?page=header');
+      $erreurpseudo = false;
+      
     }
     
-    if(!check_email($email))
+    if(isset($req2[0]))
     {
-      $valid = false;
-      $erreuremail = 'Cet email correspond a un membre';
-      header('Location: ../index.php?page=header');
+      // $valid = false;
+      $erreuremail = false;
+   
+    }
+
+   
+
+    if($erreurpseudo == false|| $erreuremail == false ){
+
+       header("Location: ../index.php?page=inscription&&inscription=failed&&pseudo=$erreurpseudo&&email=$erreuremail");
+
     }
     
     else
@@ -65,7 +81,6 @@ if(!empty($_POST))
       // $success = 'Inscritpion reussie';
       // unset($pseudo); unset($email); unset($pass);
     }
-  }
-}
+
 
 ?>

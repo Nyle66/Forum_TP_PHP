@@ -3,15 +3,15 @@ session_start();
 require('../config/connect.php');
 require('../config/fonctions.php');
 
-if(!check_session())
-{
-  header('Location: index.php');
-}
+// if(!check_session())
+// {
+//   header('Location: index.php');
+// }
 
 $title = 'Nouveau topic';
 
-$pseudo = $_SESSION['membre'];
-$membre_id = get_membre_id($pseudo);
+// $pseudo = $_SESSION['membre'];
+// $membre_id = get_membre_id($pseudo);
 
 
 if(!empty($_POST))

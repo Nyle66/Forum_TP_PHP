@@ -2,33 +2,52 @@
 
 function check_pseudo($pseudo)
 {
-  require('connect.php');
-  $req = $bdd->prepare('SELECT id FROM membres WHERE pseudo=:pseudo');
-  $req->execute(array('pseudo'=>$pseudo));
-  if($req->rowCount()==0)
-  {
-    return true;
-  }
-  $req->closeCursor();
+    require('connect.php');
+  $object = $bdd->prepare('SELECT pseudo FROM membres WHERE pseudo=:pseudo');
+  $object->execute(array('pseudo'=>$pseudo));
+  $req = $object->fetchAll(PDO::FETCH_ASSOC);
+    return $req;
+  
 }
 
 function check_email($email)
 {
+    require('connect.php');
+  $object = $bdd->prepare('SELECT email FROM membres WHERE email=:email');
+  $object->execute(array('email'=>$email));
+  $req = $object->fetchAll(PDO::FETCH_ASSOC);
+    return $req;
+  
+  
+}
+
+function check_pass($pass)
+{
   require('connect.php');
-  $req = $bdd->prepare('SELECT id FROM membres WHERE email=:email');
-  $req->execute(array('email'=>$email));
-  if($req->rowCount()==0)
-  {
-    return true;
-  }
-  $req->closeCursor();
+  $object = $bdd->prepare('SELECT pass FROM membres WHERE pass=:pass');
+  $object->execute(array('pass'=>$pass));
+  $req = $object->fetchAll(PDO::FETCH_ASSOC);
+    return $req;
+  
+  
+}
+
+function check_password($pseudo)
+{
+  require('connect.php');
+  $object = $bdd->prepare('SELECT pass FROM membres WHERE pseudo=:pseudo');
+  $object->execute(array('pseudo'=>$pseudo));
+  $req = $object->fetchAll(PDO::FETCH_ASSOC);
+    return $req;
+  
+  
 }
 
 function add_membre($pseudo,$email,$pass)
 {
   require('connect.php');
   $req = $bdd->prepare('INSERT INTO membres (pseudo,email,pass) VALUES (:pseudo,:email,:pass)');
-  $req->execute(array('pseudo'=>$pseudo,'email'=>$email,'pass'=>sha1($pass)));
+  $req->execute(array('pseudo'=>$pseudo,'email'=>$email,'pass'=>$pass));
   $req->closeCursor();
 }
 
@@ -36,11 +55,10 @@ function check_id($pseudo,$pass)
 {
   require('connect.php');
   $req = $bdd->prepare('SELECT id FROM membres WHERE pseudo=:pseudo AND pass=:pass');
-  $req->execute(array('pseudo'=>$pseudo, 'pass'=>sha1($pass)));
-   if($req->rowCount()>0)
-  {
-    return true;
-  }
+  $req->execute(array('pseudo'=>$pseudo, 'pass'=>$pass));
+   
+    return $req;
+  
 }
 
 function check_session()
