@@ -1,8 +1,10 @@
 <?php
 
+require('connect.php');
+
 function check_pseudo($pseudo)
 {
-    require('connect.php');
+  $bdd = getConnection();
   $object = $bdd->prepare('SELECT pseudo FROM membres WHERE pseudo=:pseudo');
   $object->execute(array('pseudo'=>$pseudo));
   $req = $object->fetchAll(PDO::FETCH_ASSOC);
@@ -12,7 +14,7 @@ function check_pseudo($pseudo)
 
 function check_email($email)
 {
-    require('connect.php');
+    $bdd = getConnection();
   $object = $bdd->prepare('SELECT email FROM membres WHERE email=:email');
   $object->execute(array('email'=>$email));
   $req = $object->fetchAll(PDO::FETCH_ASSOC);
@@ -23,7 +25,7 @@ function check_email($email)
 
 function check_pass($pass)
 {
-  require('connect.php');
+  $bdd = getConnection();
   $object = $bdd->prepare('SELECT pass FROM membres WHERE pass=:pass');
   $object->execute(array('pass'=>$pass));
   $req = $object->fetchAll(PDO::FETCH_ASSOC);
@@ -34,7 +36,7 @@ function check_pass($pass)
 
 function check_password($pseudo)
 {
-  require('connect.php');
+  $bdd = getConnection();
   $object = $bdd->prepare('SELECT pass FROM membres WHERE pseudo=:pseudo');
   $object->execute(array('pseudo'=>$pseudo));
   $req = $object->fetchAll(PDO::FETCH_ASSOC);
@@ -45,7 +47,7 @@ function check_password($pseudo)
 
 function add_membre($pseudo,$email,$pass)
 {
-  require('connect.php');
+  $bdd = getConnection();
   $req = $bdd->prepare('INSERT INTO membres (pseudo,email,pass) VALUES (:pseudo,:email,:pass)');
   $req->execute(array('pseudo'=>$pseudo,'email'=>$email,'pass'=>$pass));
   $req->closeCursor();
@@ -53,7 +55,7 @@ function add_membre($pseudo,$email,$pass)
 
 function check_id($pseudo,$pass)
 {
-  require('connect.php');
+  $bdd = getConnection();
   $req = $bdd->prepare('SELECT id FROM membres WHERE pseudo=:pseudo AND pass=:pass');
   $req->execute(array('pseudo'=>$pseudo, 'pass'=>$pass));
    
@@ -75,7 +77,7 @@ function check_session()
 
  function get_pseudo($email)
 {
-  require('connect.php');
+  $bdd = getConnection();
     $req = $bdd->prepare('SELECT pseudo FROM membres WHERE email=:email');
    $req->execute(array('email'=>$email));
     $data = $req->fetch(PDO::FETCH_OBJ);
@@ -88,7 +90,7 @@ function check_session()
 
   function get_email($pseudo)
    {
-    require('connect.php');
+    $bdd = getConnection();
     $req = $bdd->prepare('SELECT email FROM membres WHERE pseudo=:pseudo');
     $req->execute(array('pseudo'=>$pseudo));
     $data = $req->fetch(PDO::FETCH_OBJ);
@@ -99,7 +101,7 @@ function check_session()
 
   function get_membre_id($pseudo)
   {
-    require('connect.php');
+    $bdd = getConnection();
    $req = $bdd->prepare('SELECT id FROM membres WHERE pseudo=:pseudo');
     $req->execute(array('pseudo'=>$pseudo));
    $data = $req->fetch(PDO::FETCH_OBJ);
@@ -110,7 +112,7 @@ function check_session()
 
 function add_topic($titre,$message,$membre_id)
 {
-  require('connect.php');
+  $bdd = getConnection();
   $req = $bdd->prepare('INSERT INTO topics(titre,message,membre_id) VALUES(:titre,:message,:membre_id)');
   $req->execute(array('titre'=>$titre, 'message'=>$message, 'membre_id'=>$membre_id));
   $req->closeCursor();
@@ -118,7 +120,7 @@ function add_topic($titre,$message,$membre_id)
 
  function get_topics()
  {
-   require('connect.php');
+   $bdd = getConnection();
    $req = $bdd->prepare('SELECT * FROM topics ORDER BY id DESC');
    $req->execute();
    $data = $req->fetchAll();
@@ -128,7 +130,7 @@ function add_topic($titre,$message,$membre_id)
 
   function get_topic($id)
   {
-    require('connect.php');
+    $bdd = getConnection();
     $req = $bdd->prepare('SELECT * FROM topics WHERE id=:id');
     $req->execute(array('id'=>$id));
     $data = $req->fetch(PDO::FETCH_OBJ);
@@ -138,7 +140,7 @@ function add_topic($titre,$message,$membre_id)
 
   function get_auteur_topic($membre_id)
  {
-    require('connect.php');
+    $bdd = getConnection();
     $req = $bdd->prepare('SELECT * FROM membres WHERE id=:membre_id');
     $req->execute(array('membre_id'=>$membre_id));
     $data = $req->fetchAll();

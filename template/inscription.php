@@ -48,7 +48,7 @@
 
 <div id="main">
   
-  <h1>Inscription</h1>
+  <h1 id="register">Inscription</h1>
   
   <?php if(isset($success)):?>
   <div class="success"><?php echo $success;?></div>
@@ -66,8 +66,9 @@
     <input type="text" name="email" />
     <br><br>
     
-    <label for="pass">Mot de passe :</label>
+    <label for="pass">Mot de passe :</label><br><br>
     <input type="password" name="pass" value="<?php if(isset($pass)) echo $pass;?>" />
+    <br><br>
     
     <input type="submit" class="submit" value="Envoyer" />
     

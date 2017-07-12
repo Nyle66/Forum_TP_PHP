@@ -1,6 +1,5 @@
 <?php
 session_start();
-require('../config/connect.php');
 require('../config/fonctions.php');
 
 
@@ -10,10 +9,10 @@ require('../config/fonctions.php');
  * est dans la session ou pas selon la page ou on est. Un service représente
  * une action user. Ce contrôle ne doit pas dépendre d'une action user
  * */
-// if(check_session())
-// {
-//   header('Location: index.php');
-// }
+//  if(check_session())
+//  {
+//    header('Location: index.php');
+//  }
 
 $title = 'Connexion';
 
@@ -26,7 +25,7 @@ if($pseudo != "" && $pass != ""){
   $req1 = check_pseudo($pseudo);
   $req2 = check_password($pseudo);
 
-  $req2 = $req2[0]["pass"];
+  $req2 = $req2[0]['pass'];
 
   if(empty($req1)){
 

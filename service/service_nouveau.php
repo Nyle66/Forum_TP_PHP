@@ -1,6 +1,5 @@
 <?php
 session_start();
-require('../config/connect.php');
 require('../config/fonctions.php');
 
 // if(!check_session())

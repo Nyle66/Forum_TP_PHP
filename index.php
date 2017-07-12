@@ -20,20 +20,21 @@
     }
     switch ($page){
         case 'login':
-        include("template/login.php");
-        break;
+            include("template/login.php");
+            break;
 
         case 'header':
-        include("template/header.php");
-        break;
+
+            include("template/header.php");
+            break;
 
         case 'inscription':
         include("template/inscription.php");
         break;
 
         case 'nouveau':
-        include("template/nouveau.php");
-        break;
+            include("template/nouveau.php");
+            break;
         
     
     }

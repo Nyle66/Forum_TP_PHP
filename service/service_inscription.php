@@ -1,13 +1,12 @@
 <?php
 session_start();
 
-require('../config/connect.php');
 require('../config/fonctions.php');
 
-// if(check_session())
-// {
-//   header('Location: index.php');
-// }
+//  if(check_session())
+//  {
+//    header('Location: index.php');
+//  }
 
 $title = 'Inscription';
 

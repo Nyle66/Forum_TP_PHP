@@ -30,10 +30,13 @@
         </ul>
         
       </div>
+      
 
       <h1>BIENVENUE SUR LE FORUM </h1>
-
-
+      <center><img src="perso.png" alt="perso" id="perso"></center>
+    
+    </div>
+    <div id ="top">
         <?php if(check_session()):?>
         <p> Connectez-vous !</p>
         <?php else:?>
@@ -43,12 +46,14 @@
         foreach($topics as $t):?>
         
         <h1><?php echo $t['titre'];?></a></h1>
-        <p><?php echo substr($t['message'],0,200);?> ...</p>
+        <div id="p"><p><?php echo substr($t['message'],0,1000);?></p></div>
         
         
         <?php endforeach;?>
         <?php endif;?>
-      
+      </div>
+    
+
     </div>
 
     </body>
