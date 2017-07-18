@@ -1,0 +1,11 @@
+/***
+* Alfonso: tu as manqué quelques sessions et donc ta production s'en ai ressenti
+* par contre tu as saisi plus ou moins la logique MVC
+* et les appels en base de données ainsi que les requêtes SQL
+* pour le SQL il t'a manqué faire le lien entre les tables à travers les ID. Ceci est important!!
+*
+*
+* Je pense que tu pourras cimenter ce que tu sais dans les projets à venir. pratique encore et regarde
+* les remarques que j'ai déjà fait.
+*
+* Aussi il t'as manqué des contrôles au niveau des services et des feedbacks à l'utilisateur.

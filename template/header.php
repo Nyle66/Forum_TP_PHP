@@ -1,5 +1,11 @@
 <!--<?php include('../config/fonctions.php');?>-->
-
+<?php
+/***
+ * Alfonso: nous ne sommes pas sensé faire des inclusions de fonctions dans les templates.
+ * C'est le contrôleur qui doit faire cette inclusion. En fait je vois que tu as dejà fait l'inclusion dans le
+ * contrôleur. Donc tu n'as plus besoin de le faire ici.
+ */
+?>
 
 <!DOCTYPE html>
 <html lang="en">

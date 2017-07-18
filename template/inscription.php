@@ -1,4 +1,7 @@
 <?php
+/**
+ * Alfonso: ces contrôle sont sensé aller dans le contrôleur
+ */
   $erreurpseudo = "";
   if(isset($_GET["pseudo"])){
       if($_GET["pseudo"]== false){
